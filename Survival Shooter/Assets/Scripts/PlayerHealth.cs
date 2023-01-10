@@ -1,55 +1,54 @@
 using UnityEngine;
-using UnityEngine.UI; // UI °ü·Ã ÄÚµå
+using UnityEngine.UI; // UI ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 
-// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÇ »ý¸íÃ¼·Î¼­ÀÇ µ¿ÀÛÀ» ´ã´ç
+// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 public class PlayerHealth : LivingEntity
 {
-    public Slider healthSlider; // Ã¼·ÂÀ» Ç¥½ÃÇÒ UI ½½¶óÀÌ´õ
+    //public Slider healthSlider; // Ã¼ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
 
-    public AudioClip deathClip; // »ç¸Á ¼Ò¸®
-    public AudioClip hitClip; // ÇÇ°Ý ¼Ò¸®
-    public AudioClip itemPickupClip; // ¾ÆÀÌÅÛ ½Àµæ ¼Ò¸®
+    public AudioClip deathClip; // ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
+    public AudioClip hitClip; // ï¿½Ç°ï¿½ ï¿½Ò¸ï¿½
 
-    private AudioSource playerAudioPlayer; // ÇÃ·¹ÀÌ¾î ¼Ò¸® Àç»ý±â
-    private Animator playerAnimator; // ÇÃ·¹ÀÌ¾îÀÇ ¾Ö´Ï¸ÞÀÌÅÍ
+    private AudioSource playerAudioPlayer; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+    private Animator playerAnimator; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    private PlayerMovement playerMovement; // ÇÃ·¹ÀÌ¾î ¿òÁ÷ÀÓ ÄÄÆ÷³ÍÆ®
-    private PlayerShooter playerShooter; // ÇÃ·¹ÀÌ¾î ½´ÅÍ ÄÄÆ÷³ÍÆ®
+    private PlayerMovement playerMovement; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+    private PlayerShooter playerShooter; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
     private void Awake()
     {
-        // »ç¿ëÇÒ ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿À±â
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
     protected override void OnEnable()
     {
-        // LivingEntityÀÇ OnEnable() ½ÇÇà (»óÅÂ ÃÊ±âÈ­)
+        // LivingEntityï¿½ï¿½ OnEnable() ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­)
         base.OnEnable();
     }
 
-    // Ã¼·Â È¸º¹
+    // Ã¼ï¿½ï¿½ È¸ï¿½ï¿½
     public override void RestoreHealth(float newHealth)
     {
-        // LivingEntityÀÇ RestoreHealth() ½ÇÇà (Ã¼·Â Áõ°¡)
+        // LivingEntityï¿½ï¿½ RestoreHealth() ï¿½ï¿½ï¿½ï¿½ (Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         base.RestoreHealth(newHealth);
     }
 
-    // µ¥¹ÌÁö Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitDirection)
     {
-        // LivingEntityÀÇ OnDamage() ½ÇÇà(µ¥¹ÌÁö Àû¿ë)
+        // LivingEntityï¿½ï¿½ OnDamage() ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         base.OnDamage(damage, hitPoint, hitDirection);
     }
 
-    // »ç¸Á Ã³¸®
+    // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     public override void Die()
     {
-        // LivingEntityÀÇ Die() ½ÇÇà(»ç¸Á Àû¿ë)
+        // LivingEntityï¿½ï¿½ Die() ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         base.Die();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // ¾ÆÀÌÅÛ°ú Ãæµ¹ÇÑ °æ¿ì ÇØ´ç ¾ÆÀÌÅÛÀ» »ç¿ëÇÏ´Â Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Û°ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ã³ï¿½ï¿½
     }
 }

@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //FindObjectOfType<PlayerHealth>().onDeath += EndGame;
+        FindObjectOfType<PlayerHealth>().onDeath += EndGame;
     }
 
     
