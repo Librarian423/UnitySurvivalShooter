@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8771010606696258024}
   - component: {fileID: 8771010606704014914}
-  - component: {fileID: 1084597842988184815}
+  - component: {fileID: 1097352146610638347}
   - component: {fileID: 8771010607983003144}
   - component: {fileID: 8771010607983003145}
   - component: {fileID: 3741616263582046853}
@@ -60,7 +60,7 @@ Animator:
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!54 &1084597842988184815
+--- !u!54 &1097352146610638347
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,6 +238,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   pathFinder: {fileID: 3245452114054252031}
+  player: {fileID: 7774069633381198557, guid: ecb532d258598204eb19aa2433fcf78d, type: 3}
   enemyAnimator: {fileID: 8771010606704014914}
   hitEffect: {fileID: 1442877168698010783}
   enemyAudioSource: {fileID: 3741616263582046853}
@@ -250,6 +251,7 @@ MonoBehaviour:
   timeBetAttack: 0.5
   lastAttackTime: 0
   range: 10
+  sinkSpeed: 2.5
 --- !u!1 &8771010606696744394
 GameObject:
   m_ObjectHideFlags: 0

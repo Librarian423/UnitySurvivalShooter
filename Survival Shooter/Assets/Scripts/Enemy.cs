@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Enemy : LivingEntity
 {
     public LayerMask whatIsTarget; // 추적 대상 레이어
     private LivingEntity targetEntity; // 추적할 대상
     public NavMeshAgent pathFinder; // 경로계산 AI 에이전트
+    public GameObject player;
 
     public Animator enemyAnimator;
     public ParticleSystem hitEffect; // 피격시 재생할 파티클 효과
@@ -25,6 +27,10 @@ public class Enemy : LivingEntity
     public float lastAttackTime;
 
     public float range = 10f;
+
+    public float sinkSpeed = 2.5f;
+
+    private bool isSinking = false;
 
     private bool hasTarget
     {
@@ -57,11 +63,17 @@ public class Enemy : LivingEntity
         {
             return;
         }
+
         enemyAnimator.SetBool("HasTarget", hasTarget);
     }
     // 주기적으로 추적할 대상의 위치를 찾아 경로를 갱신
     private IEnumerator UpdatePath()
     {
+        //if (isSinking)
+        //{
+        //    // 바닥 밑으로 내려가는 싱크효과
+        //    transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
+        //}
         // 살아있는 동안 무한 루프
         while (!dead)
         {
@@ -122,14 +134,14 @@ public class Enemy : LivingEntity
         pathFinder.isStopped = true;
         pathFinder.enabled = false;
 
-        enemyAnimator.SetTrigger("Die");
+        enemyAnimator.SetTrigger("Death");
         enemyAudioSource.PlayOneShot(deathClip);
 
-        var colliders = GetComponents<Collider>();
-        foreach (var collider in colliders)
-        {
-            collider.enabled = false;
-        }
+        //var colliders = GetComponents<Collider>();
+        //foreach (var collider in colliders)
+        //{
+        //    collider.enabled = false;
+        //}
     }
 
     private void OnTriggerStay(Collider other)
@@ -140,14 +152,27 @@ public class Enemy : LivingEntity
         }
 
         // 트리거 충돌한 상대방 게임 오브젝트가 추적 대상이라면 공격 실행
-        var attackTarget = other.GetComponent<LivingEntity>();
-        if (attackTarget != null && attackTarget == targetEntity)
+        //var attackTarget = other.GetComponent<LivingEntity>();
+        if (player != null && player == targetEntity)
         {
             lastAttackTime = Time.time;
 
             var hitPoint = other.ClosestPoint(transform.position);
             var hitNormal = transform.position - other.transform.position;
-            attackTarget.OnDamage(damage, hitPoint, hitNormal);
+            player.GetComponent<PlayerHealth>().OnDamage(damage, hitPoint, hitNormal);
         }
+    }
+
+    private void StartSinking()
+    {
+        //isSinking = true;
+        transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
+        var colliders = GetComponents<Collider>();
+        foreach (var collider in colliders)
+        {
+            collider.enabled = false;
+        }
+        Destroy(gameObject, 2f);
+
     }
 }

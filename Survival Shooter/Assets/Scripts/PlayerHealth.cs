@@ -15,9 +15,27 @@ public class PlayerHealth : LivingEntity
     private PlayerMovement playerMovement; // �÷��̾� ������ ������Ʈ
     private PlayerShooter playerShooter; // �÷��̾� ���� ������Ʈ
 
+    public RawImage fading;
+    public float flashSpeed = 5f;
+    public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
+    private bool hit = false;
+
     private void Awake()
     {
         // ����� ������Ʈ�� ��������
+    }
+
+    private void Update()
+    {
+        if (hit)
+        {
+            fading.color = flashColor;
+        }
+        else
+        {   // 원래의 화면으로 서서히 돌아옴
+            fading.color = Color.Lerp(fading.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+        hit = false;
     }
 
     protected override void OnEnable()
@@ -38,6 +56,7 @@ public class PlayerHealth : LivingEntity
     {
         // LivingEntity�� OnDamage() ����(������ ����)
         base.OnDamage(damage, hitPoint, hitDirection);
+        hit = true;
     }
 
     // ��� ó��
