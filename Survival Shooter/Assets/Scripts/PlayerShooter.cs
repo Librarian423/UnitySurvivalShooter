@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Gun gun;
+
+    private PlayerInput playerInput;
+
+    private void Start()
     {
-        
+        // 사용할 컴포넌트들을 가져오기
+        playerInput = GetComponent<PlayerInput>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update()
+    {                
+        if (playerInput.fire)
+            gun.Fire();
     }
 }

@@ -12,14 +12,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
 
-    private Camera camera;
-
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
-        camera = Camera.main;
     }
 
     private void FixedUpdate()
@@ -57,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     private void Rotate()
     {
         RaycastHit hit;
-        var ray = camera.ScreenPointToRay(playerInput.mousePos);
+        var ray = Camera.main.ScreenPointToRay(playerInput.mousePos);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Ground", "Ground")))
         {

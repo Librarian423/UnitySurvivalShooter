@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     public string moveVaxisName = "Vertical";
     public string moveHaxisName = "Horizontal";
-    public string fireButtonName = "Fire";
+    public string fireButtonName = "Fire1";
     
     public float moveV { get; private set; }
     public float moveH { get; private set; }

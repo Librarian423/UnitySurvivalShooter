@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject playerPrefab;
     public static GameManager instance
     {
         get
