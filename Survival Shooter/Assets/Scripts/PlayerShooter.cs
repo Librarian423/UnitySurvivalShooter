@@ -13,7 +13,7 @@ public class PlayerShooter : MonoBehaviour
     }
 
     private void Update()
-    {                
+    {
         if (playerInput.fire)
             gun.Fire();
     }

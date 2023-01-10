@@ -1,54 +1,56 @@
 using UnityEngine;
-using UnityEngine.UI; // UI ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+using UnityEngine.UI;
 
-// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 public class PlayerHealth : LivingEntity
 {
-    //public Slider healthSlider; // Ã¼ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
+    public Slider healthSlider; // Ã¼·ÂÀ» Ç¥½ÃÇÒ UI ½½¶óÀÌ´õ
 
-    public AudioClip deathClip; // ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
-    public AudioClip hitClip; // ï¿½Ç°ï¿½ ï¿½Ò¸ï¿½
+    public AudioClip deathClip;
+    public AudioClip hitClip;
 
-    private AudioSource playerAudioPlayer; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-    private Animator playerAnimator; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½
+    private AudioSource playerAudioPlayer;
+    private Animator playerAnimator; // ÇÃ·¹ÀÌ¾îÀÇ ¾Ö´Ï¸ÞÀÌÅÍ
 
-    private PlayerMovement playerMovement; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
-    private PlayerShooter playerShooter; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+    private PlayerMovement playerMovement;
+    private PlayerShooter playerShooter;
 
     private void Awake()
     {
-        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        playerAudioPlayer = GetComponent<AudioSource>();
+        playerAnimator = GetComponent<Animator>();
     }
+
 
     protected override void OnEnable()
     {
-        // LivingEntityï¿½ï¿½ OnEnable() ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­)
         base.OnEnable();
+        healthSlider.gameObject.SetActive(true);
+        healthSlider.value = health / startingHealth;
+
+        playerMovement.enabled = true;
+        playerShooter.enabled = true;
     }
 
-    // Ã¼ï¿½ï¿½ È¸ï¿½ï¿½
-    public override void RestoreHealth(float newHealth)
-    {
-        // LivingEntityï¿½ï¿½ RestoreHealth() ï¿½ï¿½ï¿½ï¿½ (Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
-        base.RestoreHealth(newHealth);
-    }
-
-    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+    
     public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitDirection)
     {
-        // LivingEntityï¿½ï¿½ OnDamage() ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+        if (dead)
+            return;
+
+        playerAudioPlayer.PlayOneShot(hitClip);
+
         base.OnDamage(damage, hitPoint, hitDirection);
+        healthSlider.value = health / startingHealth;
     }
 
-    // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     public override void Die()
     {
-        // LivingEntityï¿½ï¿½ Die() ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         base.Die();
-    }
+        healthSlider.gameObject.SetActive(false);
+        playerAudioPlayer.PlayOneShot(deathClip);
+        playerAnimator.SetTrigger("Die");
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // ï¿½ï¿½ï¿½ï¿½ï¿½Û°ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ã³ï¿½ï¿½
+        playerMovement.enabled = false;
+        playerShooter.enabled = false;
     }
 }

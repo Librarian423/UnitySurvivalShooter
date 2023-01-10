@@ -29,6 +29,6 @@ public class PlayerInput : MonoBehaviour
         moveH = Input.GetAxis(moveHaxisName);
         fire = Input.GetButton(fireButtonName);
 
-        mousePos = Input.mousePosition;
+        mousePos = Input.mousePosition;        
     }
 }

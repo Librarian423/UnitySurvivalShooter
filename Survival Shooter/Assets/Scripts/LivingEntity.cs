@@ -5,8 +5,10 @@ using UnityEngine;
 // 체력, 데미지 받아들이기, 사망 기능, 사망 이벤트를 제공
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public float startingHealth = 100f; // 시작 체력
+    public float startingHealth = 200f; // 시작 체력
+    [field:SerializeField]
     public float health { get; protected set; } // 현재 체력
+    [field: SerializeField]
     public bool dead { get; protected set; } // 사망 상태
     public event Action onDeath; // 사망시 발동할 이벤트
 
@@ -19,27 +21,22 @@ public class LivingEntity : MonoBehaviour, IDamageable
         health = startingHealth;
     }
 
+    private void Update()
+    {
+
+    }
+
     // 데미지를 입는 기능
     public virtual void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         // 데미지만큼 체력 감소
-        health -= damage;
+        health -= damage;        
 
         // 체력이 0 이하 && 아직 죽지 않았다면 사망 처리 실행
         if (health <= 0 && !dead)
         {
             Die();
         }
-    }
-    public virtual void RestoreHealth(float newHealth)
-    {
-        if (dead)
-        {
-            return;
-        }
-
-        // 체력 추가
-        health += newHealth;
     }
 
     // 사망 처리

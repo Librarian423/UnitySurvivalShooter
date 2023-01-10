@@ -123,7 +123,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 007cd3dce0e6539409edcc484011c877, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -154,8 +154,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.021505356
+        time: 0.004878998
+        value: 0.053930283
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -469,7 +469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffc5f8729ff5d74e8ed5a3563751ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startingHealth: 200
+  healthSlider: {fileID: 0}
   deathClip: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}
   hitClip: {fileID: 8300000, guid: 9922a12f34d0a084aab32de985459723, type: 3}
 --- !u!1001 &593975214623098275

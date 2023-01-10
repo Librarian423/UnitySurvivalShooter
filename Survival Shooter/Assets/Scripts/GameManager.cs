@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<PlayerHealth>().onDeath += EndGame;
+        //FindObjectOfType<PlayerHealth>().onDeath += EndGame;
     }
 
     
@@ -50,17 +50,14 @@ public class GameManager : MonoBehaviour
         if (!isGameover)
         {
             score += newScore;
-            // 점수 UI 텍스트 갱신
             //UIManager.instance.UpdateScoreText(score);
         }
     }
 
-    // 게임 오버 처리
+    // 게임 ?�버 처리
     public void EndGame()
     {
-        // 게임 오버 상태를 참으로 변경
         isGameover = true;
-        // 게임 오버 UI를 활성화
         //UIManager.instance.SetActiveGameoverUI(true);
     }
 }
