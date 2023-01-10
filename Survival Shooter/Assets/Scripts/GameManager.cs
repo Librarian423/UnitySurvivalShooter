@@ -1,8 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
+
     public static GameManager instance
     {
         get
@@ -10,8 +14,7 @@ public class GameManager : MonoBehaviour
             if (m_instance == null)
             {
                 m_instance = FindObjectOfType<GameManager>();
-            }
-
+            } 
             return m_instance;
         }
     }
@@ -34,19 +37,30 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<PlayerHealth>().onDeath += EndGame;
     }
 
+    
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    
     public void AddScore(int newScore)
     {
         if (!isGameover)
         {
             score += newScore;
+            // 점수 UI 텍스트 갱신
             //UIManager.instance.UpdateScoreText(score);
         }
     }
 
-    // ���� ���� ó��
+    // 게임 오버 처리
     public void EndGame()
     {
+        // 게임 오버 상태를 참으로 변경
         isGameover = true;
+        // 게임 오버 UI를 활성화
         //UIManager.instance.SetActiveGameoverUI(true);
     }
 }
