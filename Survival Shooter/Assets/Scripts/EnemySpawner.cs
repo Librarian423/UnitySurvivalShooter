@@ -38,12 +38,12 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        if (Time.time >= lastSpawnTime + timeBetSpawn )
+        if (Time.time >= lastSpawnTime + spawnDelay)
         {
             // 마지막 생성 시간 갱신
             lastSpawnTime = Time.time;
             // 생성 주기를 랜덤으로 변경
-            timeBetSpawn = Random.Range(timeBetSpawnMin, timeBetSpawnMax);
+            //timeBetSpawn = spawnDelay;
             // 아이템 생성 실행
             SpawnEnemies();
         }

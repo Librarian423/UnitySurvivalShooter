@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 304949860289218323}
   - component: {fileID: 304949860289218320}
   - component: {fileID: 4430486480440877132}
+  - component: {fileID: -8292918045025337459}
   - component: {fileID: -8353037313616110956}
   m_Layer: 0
   m_Name: Hellephant
@@ -101,8 +102,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9473596, y: 1.4431236, z: 3.431509}
-  m_Center: {x: 0.0032317638, y: 1.0682398, z: 0.37081742}
+  m_Size: {x: 2.6572165, y: 1.4431236, z: 3.2640748}
+  m_Center: {x: -0.005157709, y: 1.0682398, z: 0.45453447}
 --- !u!82 &4430486480440877132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -199,6 +200,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!195 &-8292918045025337459
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304949859730601499}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &-8353037313616110956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,9 +238,9 @@ MonoBehaviour:
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 64
-  pathFinder: {fileID: 0}
+  pathFinder: {fileID: -8292918045025337459}
   enemyAnimator: {fileID: 304949859723331039}
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 19800000, guid: ef39ae7291c751249b296f00bf6fb042, type: 3}
   enemyAudioSource: {fileID: 4430486480440877132}
   deathClip: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
   hurtClip: {fileID: 8300000, guid: fce027b40770a44298a6f5a4233bfb04, type: 3}

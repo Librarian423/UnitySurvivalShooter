@@ -35,12 +35,6 @@ public class Enemy : LivingEntity
         }
     }
 
-    //public void Setup(EnemyData data)
-    //{
-
-    //    Setup(data.health, data.damage, data.speed, data.color);
-    //}
-
     // 적 AI의 초기 스펙을 결정하는 셋업 메서드
     
     public void Setup(float newHealth, float newDamage, float newSpeed, Color skinColor)
@@ -73,11 +67,13 @@ public class Enemy : LivingEntity
         {
             if (hasTarget)
             {
+                //Debug.Log("true");
                 pathFinder.isStopped = false;
                 pathFinder.SetDestination(targetEntity.transform.position);
             }
             else
             {
+                //Debug.Log("false");
                 pathFinder.isStopped = true;
 
                 var colliders = Physics.OverlapSphere(transform.position, range, whatIsTarget);
