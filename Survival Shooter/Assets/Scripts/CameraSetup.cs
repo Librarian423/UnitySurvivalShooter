@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using Photon.Pun;
+//using Photon.Pun;
 
 public class CameraSetup : MonoBehaviour
 {

@@ -668,8 +668,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1302225882}
-  - component: {fileID: 1302225881}
   - component: {fileID: 1302225880}
+  - component: {fileID: 1302225883}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -702,19 +702,6 @@ MonoBehaviour:
   spawnDelay: 10
   timeBetSpawnMax: 7
   timeBetSpawnMin: 2
---- !u!114 &1302225881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302225879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4126a725988942359ef6c6be7552f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
 --- !u!4 &1302225882
 Transform:
   m_ObjectHideFlags: 0
@@ -730,6 +717,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1302225883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302225879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa13f2ab01fdf24cb3d3887401b7f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1606894499}
 --- !u!1 &1378088179
 GameObject:
   m_ObjectHideFlags: 0
