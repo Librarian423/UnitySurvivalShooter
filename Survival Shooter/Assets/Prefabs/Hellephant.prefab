@@ -237,7 +237,7 @@ MonoBehaviour:
   startingHealth: 100
   whatIsTarget:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   pathFinder: {fileID: -8292918045025337459}
   enemyAnimator: {fileID: 304949859723331039}
   hitEffect: {fileID: 19800000, guid: ef39ae7291c751249b296f00bf6fb042, type: 3}

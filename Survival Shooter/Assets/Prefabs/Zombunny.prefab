@@ -186,9 +186,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3957761
-  m_Height: 1.3539405
+  m_Height: 1.3691784
   m_Direction: 1
-  m_Center: {x: -0.020414054, y: 0.6252842, z: 0.0975976}
+  m_Center: {x: -0.020414054, y: 0.61766523, z: 0.0975976}
 --- !u!82 &3362740183862051594
 AudioSource:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   startingHealth: 100
   whatIsTarget:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   pathFinder: {fileID: 6255916859655614296}
   enemyAnimator: {fileID: 2948301868541640940}
   hitEffect: {fileID: 19800000, guid: ef39ae7291c751249b296f00bf6fb042, type: 3}
