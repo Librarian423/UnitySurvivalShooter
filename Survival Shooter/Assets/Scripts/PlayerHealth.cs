@@ -3,16 +3,21 @@ using UnityEngine.UI;
 
 public class PlayerHealth : LivingEntity
 {
-    public Slider healthSlider; // Ã¼·ÂÀ» Ç¥½ÃÇÒ UI ½½¶óÀÌ´õ
+    public Slider healthSlider; // Ã¼ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
 
     public AudioClip deathClip;
     public AudioClip hitClip;
 
     private AudioSource playerAudioPlayer;
-    private Animator playerAnimator; // ÇÃ·¹ÀÌ¾îÀÇ ¾Ö´Ï¸ŞÀÌÅÍ
+    private Animator playerAnimator; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private PlayerMovement playerMovement;
     private PlayerShooter playerShooter;
+
+    public RawImage fading;
+    public float flashSpeed = 5f;
+    public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
+    private bool hit = false;
 
     private void Awake()
     {
@@ -20,6 +25,18 @@ public class PlayerHealth : LivingEntity
         playerAnimator = GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        // if (hit)
+        // {
+        //     fading.color = flashColor;
+        // }
+        // else
+        // {   // ì›ë˜ì˜ í™”ë©´ìœ¼ë¡œ ì„œì„œíˆ ëŒì•„ì˜´
+        //     fading.color = Color.Lerp(fading.color, Color.clear, flashSpeed * Time.deltaTime);
+        // }
+        // hit = false;
+    }
 
     protected override void OnEnable()
     {
@@ -41,6 +58,7 @@ public class PlayerHealth : LivingEntity
 
         base.OnDamage(damage, hitPoint, hitDirection);
         healthSlider.value = health / startingHealth;
+        hit = true;
     }
 
     public override void Die()

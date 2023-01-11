@@ -56,12 +56,12 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            CreateEnemy(Random.value);
+            CreateEnemy();
         }
 
     }
 
-    private void CreateEnemy(float intensity)
+    private void CreateEnemy()
     {
         //var health = Mathf.Lerp(healthMin, healthMax, intensity);
         //var damage = Mathf.Lerp(damageMin, damageMax, intensity);
@@ -77,7 +77,7 @@ public class EnemySpawner : MonoBehaviour
 
         enemy.onDeath += () => enemies.Remove(enemy);
         enemy.onDeath += () => GameManager.instance.AddScore(100);
-        enemy.onDeath += () => StartCoroutine(CoDestroyDelay(enemy.gameObject, 10f));
+        //enemy.onDeath += () => StartCoroutine(CoDestroyDelay(enemy.gameObject, 10f));
     }
 
     IEnumerator CoDestroyDelay(GameObject item, float delay)
