@@ -9,11 +9,13 @@ public class Gun : MonoBehaviour
     public Transform gunBarrelEndTransform;
     public LineRenderer bulletLine;
     public ParticleSystem fireEffect;
+    private AudioSource gunAudioPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         bulletLine = GetComponent<LineRenderer>();
+        gunAudioPlayer = GetComponent<AudioSource>();
         bulletLine.positionCount = 2;
         bulletLine.enabled = false;
     }
@@ -42,6 +44,7 @@ public class Gun : MonoBehaviour
     private IEnumerator FireEffect(Vector3 hitPos)
     {
         fireEffect.Play();
+        gunAudioPlayer.PlayOneShot(gunData.shotClip);
 
         bulletLine.SetPosition(0, gunBarrelEndTransform.position);
         bulletLine.SetPosition(1, hitPos);
